@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ladeanimation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .card {
+            width: 250px;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .loader {
+            text-align: center;
+        }
+
+        .words {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .word {
+            display: none;
+        }
+
+        .word.active {
+            display: inline;
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="loader">
+            <p>loading</p>
+            <div class="words">
+                <span class="word">buttons</span>
+                <span class="word">forms</span>
+                <span class="word">switches</span>
+                <span class="word">cards</span>
+                <span class="word">buttons</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const words = document.querySelectorAll('.word');
+        let currentIndex = 0;
+
+        function cycleWords() {
+            words[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % words.length;
+            words[currentIndex].classList.add('active');
+        }
+
+        words[currentIndex].classList.add('active');
+        setInterval(cycleWords, 1000);
+    </script>
+</body>
+</html>
